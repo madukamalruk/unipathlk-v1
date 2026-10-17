@@ -3,7 +3,6 @@ name = "unipath-lk"
 version = "0.2.0"
 description = "Evidence-aware education pathways for Sri Lankan post-A/L students across all fields"
 entry-point = "main.jac"
-kind = "fullstack"
 jac-version = "0.16.7"
 requires-python = ">=3.12,<3.13"
 
@@ -34,7 +33,3 @@ base_route_app = "app"
 [test]
 directory = "tests"
 verbose = true
-
-[scripts]
-setup = "bash scripts/setup.sh"
-start = "bash scripts/start.sh"

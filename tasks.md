@@ -1,6 +1,6 @@
 # Implementation record — 2026-10-17
 
-Owner deadline: **17:00 Asia/Colombo**. Earlier hosting deferral is superseded by the owner's request to prepare this repository for JacHammer import/pull. Current work is U12 below; actual hosted verification remains separate.
+Owner deadline: **17:00 Asia/Colombo**. Feature development is frozen; final publication and rehearsal take priority. JacHammer hosting is deferred by the owner.
 
 | Work | Status | Acceptance evidence |
 | --- | --- | --- |
@@ -12,18 +12,10 @@ Owner deadline: **17:00 Asia/Colombo**. Earlier hosting deferral is superseded b
 | R05 relevant security | DONE / LIMITS | Input, body, path, account-surface and model-output boundaries verified; process-local limits are not a distributed abuse-control system. |
 | R06 regression verification | DONE | 18 authored Jac modules checked; 54 native tests and ten explicit HTTP groups pass. Earlier 71 overlapping cases consolidated into 54 meaningful cases. Native client builds locally. |
 | R07 release records / publication | DONE | Source published at 92b9d31; redacted exact-secret scan clean; native bundle rebuilt; [Linux CI](https://github.com/madukamalruk/unipathlk-v2/actions/runs/39018179217) passed checker/native/HTTP steps for that source. |
-| U08 JacHammer | RESUMED AS U12 | Owner requests compatibility on repository import/pull. No observed hosted URL yet. |
+| U08 JacHammer | DEFERRED | Owner requested local review first. No hosting claim. |
 | U09 presentation | PREPARED / REHEARSAL NEEDED | Updated script/description; existing PDF/PPTX and 150-second silent video depict the prior release. Submission is not performed. |
 
-## U12 — JacHammer repository import/pull compatibility
-
-Status: **IMPLEMENTED / LOCAL VERIFIED**. Owner resumes compatibility work using official JacHammer docs. Root owns runtime/configuration/scripts/docs; independent test engineer owns T55/T56 and H12/H13. Added explicit fullstack/Python configuration, portable pinned setup/start, exact configured proxy origins and host-environment precedence. Removed the misleading static localhost index; native client/root serving preserved. CI now builds the client and verifies actual HTML/JS/CSS instead of API-only startup.
-
-Evidence: fresh Python 3.12.12 environment installed all 57 constrained packages; all 18 authored Jac modules pass; 56 native tests pass (0.845s); native client build succeeds; all 13 HTTP groups pass on port 8765, including internal Host/public Origin and exact image/bundle delivery. Shell scripts pass Bash syntax checks; actual Linux launcher execution is left to updated CI. Tracked text credential-pattern scan: zero matches; no real dotenv tracked. [Detailed evidence](docs/jachammer-compatibility.md), [import guide](JACHAMMER_INIT_PROMPT.md). Actual authenticated JacHammer run/public URL remains unobserved; no deployment claim.
-
-Publication evidence: implementation `cef44ec` pushed to `rusira`; [Linux CI 39025035597](https://github.com/madukamalruk/unipathlk-v1/actions/runs/39025035597) passed pinned install/check/native/start.sh/client/13 HTTP steps. The same tested implementation is included in `main` for default JacHammer imports. Subsequent evidence checkpoint changes documentation only.
-
-## Previous defect loop
+## Defect loop
 
 Reproduce, isolate, fix, run the affected case and related regressions, record the result. Fixed stale Jac IR by preserving cache backups and using current write times; bounded SDK calls; corrected guide typing and a hospitality question incorrectly classified as generic study advice; validated partial grades and nested subject keys; denied unused framework accounts and unsafe static paths. Prior Linux CI narrowing error was repaired at a5ff6d5.
 

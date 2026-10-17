@@ -1,17 +1,4 @@
 .venv/
 .jac/
 node_modules/
-.uv-cache/
-__jac_gen__/
-__pycache__/
-dist/
-.env
-.env.*
-!.env.example
-# Presentation binaries are repository references, not runtime inputs.
-docs/*.mp4
-docs/*.pptx
-docs/*.pdf
-docs/*-preview.png
-docs/screenshots/
 reference_materials/

@@ -19,7 +19,7 @@ An A/L result should start a conversation about the next step. UniPath LK helps 
 
 The researched discovery catalogue contains **37 real programmes, 12 fields and seven providers**. It includes university, higher-national-diploma and practical vocational options. The application shows up to three routes, their conditions, evidence and missing facts. It is a small prototype catalogue, not a national directory, an admission decision or a career guarantee.
 
-**Current status:** clean Python 3.12 install and native client build verified; 18 authored Jac modules check; **56 native tests and 13 HTTP groups pass**, including reverse-proxy origins and root HTML/JS/CSS. JacHammer import configuration and instructions are prepared; actual hosted execution and event submission remain unverified. A real Gemini planning request returned `live_ai` in 3.67 seconds during the earlier judge audit. See [current JacHammer evidence](docs/jachammer-compatibility.md) and the [strict judge audit](docs/judge-audit-2026-10-17.md).
+**Current status:** runnable locally; 18 authored Jac modules check; 54 native tests and 11 HTTP groups pass. A real Gemini planning request returned `live_ai` in 3.67 seconds during the latest audit. JacHammer hosting and event submission are pending. See the [strict judge audit](docs/judge-audit-2026-10-17.md) for evidence and limitations.
 
 ## Key features
 
@@ -107,15 +107,7 @@ python3.12 -m venv .venv
 PYTHONIOENCODING=utf-8 .venv/bin/jac start main.jac --port 8000
 ```
 
-Open [http://127.0.0.1:8000](http://127.0.0.1:8000). Windows launchers [run_project.ps1](run_project.ps1) / [run_project.bat](run_project.bat) use the local environment. The native Jac app is served at `/`; a standalone static HTML file is unnecessary.
-
-### Import into JacHammer
-
-Import this repository as a **Web app**, selecting the root `jac.toml` / `main.jac`. Confirm **Settings > Jac version = 0.16.7**, Python **3.12**, and byLLM **0.6.19**. Keep native client bundling enabled; the app serves on port **8000**. The committed fullstack kind, entry point and root-app setting let Jac identify the application.
-
-For a Linux host terminal, `bash scripts/setup.sh` installs the verified dependency constraints; `bash scripts/start.sh` checks versions and starts the native app in the foreground. `PORT` overrides 8000. For platform-managed startup, the equivalent is `jac start main.jac --port 8000`.
-
-Set runtime variables at **project level** in JacHammer. Gemini keys are optional; the app works with explicit fallback modes without them. Set `LITELLM_LOCAL_MODEL_COST_MAP=True` to avoid the optional remote pricing-map fetch at import. If the hosted proxy rewrites `Host`, set `UNIPATH_PUBLIC_ORIGINS` to the exact preview/production origins (comma-separated, no trailing slash). Hosting variables take precedence over local `.env` defaults. See the [complete JacHammer connection and smoke-test guide](JACHAMMER_INIT_PROMPT.md).
+Open [http://127.0.0.1:8000](http://127.0.0.1:8000). Windows launchers [run_project.ps1](run_project.ps1) / [run_project.bat](run_project.bat) use the local environment. `index.html` is a legacy startup note, not the application frontend.
 
 ### Optional Gemini configuration
 
@@ -137,7 +129,7 @@ $env:PYTHONIOENCODING = "utf-8"
 
 `jac run main.jac` checks the entry/import path; use `jac start` to serve the app. Linux/macOS use `.venv/bin/jac` for the equivalent commands. The [CI workflow](.github/workflows/verify.yml) checks every authored module, runs native tests and starts a clean API server for explicit HTTP checks.
 
-Latest compatibility verification: **18 Jac modules passed; 56 native tests passed in 0.845s; 13 HTTP groups passed** against a freshly built native client. The HTTP file intentionally has no automatic test discovery; run its named main entry with `UNIPATH_TEST_CLIENT=1` for the client delivery group. Coverage includes cash-flow oracles, prerequisites on edges, cycles/caps, isolated requests, partial-grade validation, malformed/provider-failure outputs, known-ID validation, privacy bounds, retake estimates, endpoint/path/body restrictions, exact PNG delivery, proxy origins and native HTML/JS/CSS.
+Latest audit: **18 Jac modules passed; 54 native tests passed in 0.248s; 11 HTTP groups passed**. The HTTP file intentionally has no automatic test discovery; run its named main entry. Coverage includes cash-flow oracles, prerequisites on edges, cycles/caps, isolated requests, partial-grade validation, malformed/provider-failure outputs, known-ID validation, privacy bounds, retake estimates, endpoint/path/body restrictions and exact PNG delivery.
 
 [Verified source CI — 2248e2a](https://github.com/madukamalruk/unipathlk-v2/actions/runs/39019439501). This proves those scoped checks, not complete browser, load, security or accessibility coverage. The owner supplied desktop/theme/panel screenshots; independent current browser control remains unavailable, so mobile/keyboard/focus interaction review is incomplete.
 
@@ -147,7 +139,7 @@ Latest compatibility verification: **18 Jac modules passed; 56 native tests pass
 | --- | --- |
 | Jac and Jaseci | Meaningful nodes, typed progression edges, walkers, node-entry traversal, native client and typed byLLM. Domain entities are represented within offering records rather than a larger typed graph ontology. |
 | Agentic depth | Real bounded decisions and validated dispatch. Mandatory initial actions, one real progression edge and no autonomous research/council memory limit autonomy. |
-| Technical execution | Fresh pinned install/native build, 56 tests and 13 HTTP groups. CI now also builds/checks the client. Earlier release has clean Linux CI; current hosted execution/live URL remain unverified. |
+| Technical execution | Local native build, 54 tests, 11 HTTP groups and clean Linux CI. JacHammer compatibility/live URL remain unverified. |
 | Creativity and impact | Evidence-aware Sri Lankan pathway and repeat-A/L comparison across fields. Real-world outcome validation and catalogue breadth remain work. |
 | Presentation | Current 150-second script and written description exist; older deck/video binaries require replacement or an explicit prior-release label. |
 
@@ -155,16 +147,16 @@ Latest compatibility verification: **18 Jac modules passed; 56 native tests pass
 
 | Handwritten-source scope | Nonblank line share | Nonwhitespace UTF-8 byte share |
 | --- | --- | --- |
-| All authored source, including tests/audit | 3,953 / 5,534 = **71.431% Jac** | 166,348 / 192,480 = **86.424% Jac** |
-| Application/support source, excluding tests and audit script | 2,651 / 4,232 = **62.642% Jac** | 100,710 / 126,842 = **79.398% Jac** |
+| All authored source, including tests/audit | 3,794 / 5,291 = **71.707% Jac** | 158,781 / 181,731 = **87.371% Jac** |
+| Application/support source, excluding tests and audit script | 2,629 / 4,126 = **63.718% Jac** | 99,943 / 122,893 = **81.325% Jac** |
 
-Generated code, dependencies, caches, JSON/lock files, documents and image bytes are excluded. CSS and the concurrently added Python Vercel adapter (`api/index.py`) and its launchers are included. The JacHammer application uses native Jac; the separate Vercel additions are preserved from the owner's concurrent main-branch commit. Comments are included in these measurements. The official PDF says at least 80% Jac but does not define a counting denominator. **Line-based counting fails in both scopes; byte-based counting passes with tests/audit included and fails in application/support scope. Organiser clarification is required before claiming eligibility.** No minification, filler or Linguist overrides are used to manufacture compliance.
+Generated code, dependencies, caches, JSON/lock files, documents and image bytes are excluded. CSS is included. There is no handwritten `.py` or `.js` application file; Python standard-library interop occurs inside Jac. Comments are included in these source measurements. The official PDF says at least 80% Jac but does not define a counting denominator. **Line-based counting currently fails; byte-based counting passes. Organiser clarification is required before claiming eligibility.** No minification, filler or Linguist overrides are used to manufacture compliance.
 
 The official event PDF gives **17 October 2026, hacking from 09:00 and submission by 17:30 Asia/Colombo**; our owner targets **17:00** as a buffer. JacHammer hosting is encouraged, not mandatory in that PDF. Current commits have event-day timestamps, but commit dates alone do not prove the origin/timing of every received source file. Team check-in and final submission remain owner/event responsibilities.
 
 ## Deployment and demo
 
-The repository includes JacHammer import configuration, portable setup/start scripts, exact-origin proxy support and native-page/asset HTTP checks. Import/pull refreshes project source; an existing deployment needs a separate redeploy. Confirm the pinned runtime, project-level server variables and actual hosted smoke tests using the [JacHammer guide](JACHAMMER_INIT_PROMPT.md). A successful local run does not establish an observed hosted deployment.
+JacHammer import/deployment is the next optional delivery step after local review. Confirm the exact pinned runtime, native client and project compatibility hooks before deploying. Use host server-secret settings and smoke-test all eight operations. A successful local run does not prove hosted compatibility; keep the local/recorded fallback. See [JacHammer handoff](JACHAMMER_INIT_PROMPT.md).
 
 - [Current 150-second demo script](DEMO_VIDEO_SCRIPT.md)
 - [Written submission description](SUBMISSION_DOCUMENT.md)

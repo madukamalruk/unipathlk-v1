@@ -13,7 +13,7 @@ Help students compare education options against their actual interests, results,
 5. Bounded Gemini planning and a separate optional contextual study guide. AI cannot create programme facts, numeric fees, accepted IDs or an admission outcome.
 6. Another-A/L decision aid with separate scenario inputs: completed sittings, preparation months/costs, weekly study time, support, goal and income forgone. Compare present routes without changing actual grades or assuming future passes.
 7. Compact responsive native Jac UI, Colombo clock, source disclosures, light/dark themes, keyboard support, explicit loading/error/fallback/stale states and a show/hide guide panel.
-8. Local verification first, publication to madukamalruk/unipathlk-v1. Owner now requests JacHammer compatibility when importing/pulling and connecting this repository; prior hosting deferral is superseded for this preparation. Report actual host verification separately. Owner's final deadline:17:00 Asia/Colombo on17October2026.
+8. Local verification first, publication to madukamalruk/unipathlk-v1. JacHammer hosting remains deferred until owner review. Owner's final deadline:17:00 Asia/Colombo on17October2026.
 
 ## Exclusions
 

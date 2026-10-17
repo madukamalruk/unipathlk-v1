@@ -1,7 +1,6 @@
 # UniPath LK local launcher. Server settings are loaded only inside the server.
 $ErrorActionPreference = 'Stop'
 $env:PYTHONIOENCODING = 'utf-8'
-$env:LITELLM_LOCAL_MODEL_COST_MAP = 'True'
 Set-Location -LiteralPath $PSScriptRoot
 $localJac = Join-Path $PSScriptRoot '.venv\Scripts\jac.exe'
 if (-not (Test-Path -LiteralPath $localJac)) {

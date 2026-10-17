@@ -14,33 +14,12 @@ Jac 0.16.7 sends those directly through HTTPTransport, bypassing send_json.
 """
 import from importlib.metadata { version }
 import json;
-import os;
 import from pathlib { Path }
 import from urllib.parse { urlsplit }
 import from jaclang.jac0core.runtime {
     hookimpl, plugin_manager, JacRuntimeImpl
 }
 import from jaclang.runtimelib.server { JacAPIServer }
-
-# A reverse proxy can replace Host with an internal service address. Only
-# operator-configured exact origins may cross that boundary; forwarded
-# headers are request input and never grant access.
-def _origin_allowed(origin: str, host: str) -> bool {
-    if origin in ["http://" + host, "https://" + host] { return True; }
-    for value in os.environ.get("UNIPATH_PUBLIC_ORIGINS", "").split(",") {
-        configured = value.strip();
-        try {
-            parsed = urlsplit(configured);
-            valid = parsed.scheme in ["http", "https"] and bool(parsed.hostname)
-                and parsed.username is None and parsed.password is None
-                and not parsed.path and not parsed.query and not parsed.fragment
-                and "*" not in configured and not any([char.isspace() for char in configured]);
-            port = parsed.port;
-            if valid and origin == configured { return True; }
-        } except ValueError { continue; }
-    }
-    return False;
-}
 
 def _sanitize_error_envelope(data: dict) -> None {
     if data.get("error") is not None {
@@ -98,7 +77,7 @@ obj _UniPathAPIServer(JacAPIServer) {
             if path not in allowed { _reject_http(handler, 404); return; }
             origin = handler.headers.get("Origin");
             host = str(handler.headers.get("Host", ""));
-            if origin and not _origin_allowed(str(origin), host) { _reject_http(handler, 403); return; }
+            if origin and origin not in ["http://" + host, "https://" + host] { _reject_http(handler, 403); return; }
             if handler.headers.get("Transfer-Encoding") { _reject_http(handler, 400); return; }
             lengths = handler.headers.get_all("Content-Length", []) as list;
             if len(lengths) > 1 { _reject_http(handler, 400); return; }
@@ -129,7 +108,7 @@ obj _UniPathAPIServer(JacAPIServer) {
             if name.lower() == "access-control-allow-origin" {
                 origin = handler.headers.get("Origin");
                 host = str(handler.headers.get("Host", ""));
-                if origin and _origin_allowed(str(origin), host) { original_header(handler, name, str(origin)); }
+                if origin in ["http://" + host, "https://" + host] { original_header(handler, name, origin); }
                 return;
             }
             original_header(handler, name, value);

@@ -11,9 +11,7 @@ def _load_local_settings() -> None {
             (key, value) = stripped.split("=", 1);
             key = key.strip();
             value = value.strip().strip('"').strip("'");
-            if key in ["GOOGLE_API_KEY", "GEMINI_API_KEY", "UNIPATH_MODEL", "UNIPATH_PUBLIC_ORIGINS"] and value {
-                os.environ.setdefault(key, value);
-            }
+            if key in ["GOOGLE_API_KEY", "GEMINI_API_KEY", "UNIPATH_MODEL"] and value { os.environ[key] = value; }
         }
     }
 }

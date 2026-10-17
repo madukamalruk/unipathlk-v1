@@ -2,14 +2,6 @@
 
 2026-10-17, Asia/Colombo. Authoritative local project uses Python 3.12, Jac 0.16.7 and byLLM 0.6.19.
 
-## Latest: JacHammer compatibility (U12)
-
-Fresh Python 3.12.12 install with all 57 constrained packages; 18 authored Jac modules pass. **56 native tests pass in 0.845s** and **13 HTTP groups pass** against a freshly built native client/server on port 8765. New T55/H12 verify exact configured public origins with internal proxy Host and spoof rejection; T56 verifies host environment precedence with mocked dotenv data; H13 fetches root HTML and actual native JS/CSS, checking mount/title/viewport/status/MIME and rejecting HTML fallbacks. All original assertions remain. Initial H13 interop typing errors were repaired before the final pass. Shell scripts pass Git Bash syntax checks; Linux execution is included in updated CI. Actual JacHammer runtime/browser/URL is still unobserved. [Full evidence](jachammer-compatibility.md).
-
-## Earlier release evidence
-
-Current implementation `cef44ec` also passed [clean Linux CI](https://github.com/madukamalruk/unipathlk-v1/actions/runs/39025035597), including the Linux launcher, native build and all 13 HTTP groups. This is current CI evidence, separate from the earlier runs below.
-
 | Scope | Observed result |
 | --- | --- |
 | Authored-module checker | 18/18 passed, 40.31s; final chat-icon App check also passed, 6.02s. |

@@ -5,7 +5,7 @@ import os;
 import time;
 import threading;
 import from contextvars { ContextVar }
-import from unittest.mock { patch, Mock, mock_open }
+import from unittest.mock { patch, Mock }
 import from contextlib { AbstractContextManager }
 import from email.message { Message }
 import from services.engine {
@@ -13,8 +13,7 @@ import from services.engine {
     BranchSearchWalker, Catalogue, Offering, ProgressesTo
 }
 import from services.planner { _planning_session, _safe_model_call, _bounded_ai_call, PlannerDecision }
-import from services.compat { _UniPathPageCompatibility, _UniPathAPIServer, _origin_allowed }
-import from services.settings { _load_local_settings }
+import from services.compat { _UniPathPageCompatibility, _UniPathAPIServer }
 import from services.gemini { BoundedGeminiModel }
 import from services.retake { _evaluate_retake, _validate_retake }
 import from services.assistant { _guide_answer, _guide_request, _safe_guide_call, AssistantDecision }
@@ -913,59 +912,4 @@ test "T54 transport guards deny unsafe requests before parser delegation" {
     handler.headers.replace_header("Content-Length", "32768"); handler.headers["Origin"] = "http://127.0.0.1:8000";
     handler.do_POST(); post.assert_called_once_with(handler);
     handler.connection.settimeout.assert_called_once_with(12.0);
-}
-
-test "T55 public origins allow exact deployment configuration without trusting proxy headers" {
-    configured = " https://unipath.example,https://preview.example:8443 ";
-    with (patch.dict(os.environ, {"UNIPATH_PUBLIC_ORIGINS": configured}, clear=False) as AbstractContextManager[object]) {
-        assert _origin_allowed("http://127.0.0.1:8000", "127.0.0.1:8000");
-        assert _origin_allowed("https://127.0.0.1:8000", "127.0.0.1:8000");
-        assert _origin_allowed("https://unipath.example", "internal-runtime:8000");
-        assert _origin_allowed("https://preview.example:8443", "internal-runtime:8000");
-        for origin in ["null", "https://attacker.invalid", "https://unipath.example.attacker.invalid",
-            "https://unipath.example:443", "http://unipath.example", "https://preview.example",
-            "https://unipath.example/path", "https://unipath.example/", "https://unipath.example?query=1",
-            "https://unipath.example#fragment", "https://user@unipath.example"] {
-            assert not _origin_allowed(origin, "internal-runtime:8000"), "Unexpected origin accepted: " + origin;
-        }
-        (handler, post, get) = guarded_handler_fixture();
-        handler.headers.replace_header("Host", "internal-runtime:8000");
-        handler.headers["Origin"] = "https://unipath.example";
-        handler.do_POST(); post.assert_called_once_with(handler);
-        (handler, post, get) = guarded_handler_fixture();
-        handler.headers["Origin"] = "https://attacker.invalid";
-        handler.headers["X-Forwarded-Host"] = "attacker.invalid";
-        handler.headers["X-Forwarded-Proto"] = "https";
-        handler.headers["Forwarded"] = "host=attacker.invalid;proto=https";
-        handler.do_POST(); post.assert_not_called(); handler.send_response.assert_called_once_with(403);
-    }
-    for invalid in ["*", "https://*.example", "https://unipath.example/", "https://unipath.example/path",
-        "https://unipath.example?query=1", "https://unipath.example#fragment", "https://user@unipath.example",
-        "ftp://unipath.example", "unipath.example"] {
-        with (patch.dict(os.environ, {"UNIPATH_PUBLIC_ORIGINS": invalid}, clear=False) as AbstractContextManager[object]) {
-            assert not _origin_allowed(invalid, "internal-runtime:8000"), "Invalid configured origin accepted";
-            assert not _origin_allowed("https://unipath.example", "internal-runtime:8000");
-        }
-    }
-    with (patch.dict(os.environ, {"UNIPATH_PUBLIC_ORIGINS": ""}, clear=False) as AbstractContextManager[object]) {
-        assert not _origin_allowed("https://unipath.example", "internal-runtime:8000");
-    }
-}
-
-test "T56 local settings preserve hosting environment and load only allowlisted defaults" {
-    content = "GOOGLE_API_KEY=dotenv-google\nGEMINI_API_KEY=dotenv-gemini\nUNIPATH_MODEL=dotenv-model\nUNIPATH_PUBLIC_ORIGINS=https://dotenv.example\nUNRELATED_SETTING=ignored\n";
-    existing = {"GOOGLE_API_KEY": "server-google", "UNIPATH_MODEL": "server-model",
-        "UNIPATH_PUBLIC_ORIGINS": "https://server.example"};
-    with (patch.dict(os.environ, existing, clear=True) as AbstractContextManager[object]) {
-        with patch("services.settings.os.path.isfile", return_value=True) {
-            with patch("builtins.open", mock_open(read_data=content)) {
-                _load_local_settings();
-            }
-        }
-        assert os.environ["GOOGLE_API_KEY"] == "server-google";
-        assert os.environ["GEMINI_API_KEY"] == "dotenv-gemini";
-        assert os.environ["UNIPATH_MODEL"] == "server-model";
-        assert os.environ["UNIPATH_PUBLIC_ORIGINS"] == "https://server.example";
-        assert "UNRELATED_SETTING" not in os.environ;
-    }
 }
