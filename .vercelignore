@@ -1,0 +1,15 @@
+.git
+.venv
+__pycache__
+*.py[cod]
+.idea
+.vscode
+*.log
+docs/pitch-deck.pdf
+docs/pitch-deck.pptx
+docs/demo-walkthrough.mp4
+.jac/cache*
+.jac/bin
+.jac/client/node_modules
+.jac/client/compiled
+.jac/client/dist.before*
