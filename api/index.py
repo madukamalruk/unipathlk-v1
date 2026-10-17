@@ -1,6 +1,7 @@
-"""Vercel Serverless Function entrypoint for UniPath LK (Jac & Jaseci)."""
+"""Production-grade Vercel Serverless Function entrypoint for UniPath LK."""
 import os
 import sys
+import tempfile
 from pathlib import Path
 from http.server import HTTPServer
 from urllib.parse import urlsplit
@@ -8,9 +9,11 @@ from urllib.parse import urlsplit
 # Ensure UTF-8 encoding across environments
 os.environ["PYTHONIOENCODING"] = "utf-8"
 
-# If running on Vercel or read-only filesystem, route runtime data to /tmp
+# If running on Vercel or read-only filesystem, route runtime data to a clean temp directory
 if os.environ.get("VERCEL") or os.name != "nt":
-    os.environ.setdefault("JAC_DATA_PATH", "/tmp")
+    data_dir = os.path.join(tempfile.gettempdir(), "unipath_jac_data")
+    os.makedirs(data_dir, exist_ok=True)
+    os.environ["JAC_DATA_PATH"] = data_dir
 
 # Resolve workspace root and ensure it is in sys.path and cwd
 WORKSPACE_DIR = Path(__file__).resolve().parent.parent
@@ -20,27 +23,27 @@ os.chdir(str(WORKSPACE_DIR))
 from jaclang.jac0core.runtime import JacRuntime as Jac
 from jaclang.cli.commands.cli_helpers import proc_file
 
-# Bootstrap and import main.jac
-_base, _mod, _mach = proc_file(str(WORKSPACE_DIR / "main.jac"))
-Jac.jac_import(target=_mod, base_path=_base, lng="jac")
-
-# Instantiate Jac API Server and obtain the underlying UniPathRequestHandler (port=0 for serverless)
+base, mod, mach = proc_file(str(WORKSPACE_DIR / "main.jac"))
+Jac.jac_import(target=mod, base_path=base, lng="jac")
 ServerClass = Jac.get_api_server_class()
-_jac_server = ServerClass(module_name=_mod, port=0, base_path=_base)
+_jac_server = ServerClass(module_name=mod, port=0, base_path=base)
 _jac_server.introspector.load()
 _jac_server._ensure_sv_siblings()
 _BaseJacHandler = _jac_server.create_handler()
 
+APP_HTML = b'''<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><title>UniPath LK | Education pathways</title><meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="stylesheet" href="/static/styles.css"/></head><body><div id="root"></div><script id="__jac_init__" type="application/json">{"module": "main", "function": "app", "args": {}, "globals": {}, "argOrder": [], "endpointEffects": {"walker:get_app_info": {"is_writer": false, "touches": ["Root"]}, "walker:plan_pathways": {"is_writer": false, "touches": ["Root"]}, "walker:run_stress_test": {"is_writer": false, "touches": ["Root"]}, "walker:get_catalogue_projection": {"is_writer": false, "touches": ["Root"]}, "walker:get_evidence": {"is_writer": false, "touches": ["Root"]}, "walker:health": {"is_writer": false, "touches": ["Root"]}, "walker:evaluate_retake": {"is_writer": false, "touches": ["Root"]}, "walker:ask_guide": {"is_writer": false, "touches": ["Root"]}, "func:install_page_compatibility": {"is_writer": false, "touches": ["*"]}}}</script><script type="module" src="/static/client.js"></script></body></html>'''
+
 
 class handler(_BaseJacHandler):
-    """Vercel Serverless Handler wrapping UniPath's Jac request handler."""
+    """Production Vercel Handler with instant static delivery and native Jac walkers."""
+
+    def __init__(self, request, client_address, server):
+        super().__init__(request, client_address, _jac_server.server or _jac_server)
 
     def parse_request(self):
-        # Let BaseHTTPRequestHandler parse raw request line & headers
         if not super().parse_request():
             return False
 
-        # Vercel rewrites provide the original matched path in x-matched-path or x-invoke-path
         raw_matched = self.headers.get("x-matched-path") or self.headers.get("x-invoke-path")
         resolved = raw_matched if (raw_matched and not raw_matched.startswith("/api/index")) else self.path
 
@@ -55,12 +58,66 @@ class handler(_BaseJacHandler):
         else:
             self.path = path + query
 
-        # Normalize Host from x-forwarded-host if present, ensuring strict Origin checks pass
         fwd_host = self.headers.get("x-forwarded-host")
         if fwd_host and "Host" in self.headers:
             self.headers.replace_header("Host", fwd_host)
 
         return True
+
+    def do_GET(self):
+        path = urlsplit(self.path).path
+
+        # Root HTML: Serve instantaneously
+        if path in ("", "/"):
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Cache-Control", "public, max-age=0, must-revalidate")
+            self.send_header("Content-Length", str(len(APP_HTML)))
+            self.end_headers()
+            self.wfile.write(APP_HTML)
+            return
+
+        # Prebuilt client JavaScript bundle
+        if path == "/static/client.js" or path.startswith("/static/client."):
+            bundle_file = WORKSPACE_DIR / ".jac" / "client" / "dist" / "client.CsvrtV7z.js"
+            if bundle_file.is_file():
+                data = bundle_file.read_bytes()
+                self.send_response(200)
+                self.send_header("Content-Type", "application/javascript; charset=utf-8")
+                self.send_header("Cache-Control", "public, max-age=31536000, immutable")
+                self.send_header("Content-Length", str(len(data)))
+                self.end_headers()
+                self.wfile.write(data)
+                return
+
+        # Prebuilt styles
+        if path == "/static/styles.css":
+            css_file = WORKSPACE_DIR / ".jac" / "client" / "dist" / "styles.css"
+            if css_file.is_file():
+                data = css_file.read_bytes()
+                self.send_response(200)
+                self.send_header("Content-Type", "text/css; charset=utf-8")
+                self.send_header("Cache-Control", "public, max-age=31536000, immutable")
+                self.send_header("Content-Length", str(len(data)))
+                self.end_headers()
+                self.wfile.write(data)
+                return
+
+        # Owner public images from assets/
+        if path.startswith("/static/"):
+            img_name = path.removeprefix("/static/")
+            img_file = WORKSPACE_DIR / "assets" / img_name
+            if img_file.is_file():
+                data = img_file.read_bytes()
+                self.send_response(200)
+                self.send_header("Content-Type", "image/png")
+                self.send_header("Cache-Control", "public, max-age=86400")
+                self.send_header("Content-Length", str(len(data)))
+                self.end_headers()
+                self.wfile.write(data)
+                return
+
+        return super().do_GET()
 
 
 # Standalone runner for direct local testing
