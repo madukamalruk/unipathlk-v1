@@ -2,7 +2,7 @@
 
 Updated17October2026, Asia/Colombo. Owner's current deadline is **17:00**. Feature additions are frozen; finish verification, local review and rehearsal. JacHammer hosting remains deferred until owner review.
 
-- Authoritative folder: `C:\Users\maduk\Downloads\UniPath_LK_Complete_Project`; target repository `madukamalruk/unipathlk-v2`.
+- Authoritative folder: `C:\Users\maduk\Downloads\UniPath_LK_Complete_Project`; target repository `madukamalruk/unipathlk-v1`.
 - Verified baseline source a5ff6d5; documentation checkpoint fdc7830. Original project backup and pre-increment Git archive are outside the checkout.
 - Audience covers all post-A/L fields, not IT only. English UI/code/docs; natural Sinhala collaboration.
 - Pins: Python3.12/Jac0.16.7/byLLM0.6.19 and exact tested dependency constraints. Use the project executable, not global Jac.

@@ -6,7 +6,7 @@
 [![Jac](https://img.shields.io/badge/Jac-0.16.7-6152a3)](https://github.com/jaseci-labs/jac)
 [![Python](https://img.shields.io/badge/Python-3.12-3776ab)](https://www.python.org/)
 [![byLLM](https://img.shields.io/badge/byLLM-0.6.19-16766e)](requirements.txt)
-[![Verify Jac application](https://github.com/madukamalruk/unipathlk-v2/actions/workflows/verify.yml/badge.svg)](https://github.com/madukamalruk/unipathlk-v2/actions/workflows/verify.yml)
+[![Verify Jac application](https://github.com/madukamalruk/unipathlk-v1/actions/workflows/verify.yml/badge.svg)](https://github.com/madukamalruk/unipathlk-v1/actions/workflows/verify.yml)
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/pathways-dark.png">
@@ -89,8 +89,8 @@ Prerequisites: Git, **Python 3.12**, network access for pinned dependencies and 
 ### Windows PowerShell
 
 ```powershell
-git clone https://github.com/madukamalruk/unipathlk-v2.git
-cd unipathlk-v2
+git clone https://github.com/madukamalruk/unipathlk-v1.git
+cd unipathlk-v1
 py -3.12 -m venv .venv
 .venv\Scripts\python.exe -m pip install -r requirements.txt
 $env:PYTHONIOENCODING = "utf-8"
@@ -100,8 +100,8 @@ $env:PYTHONIOENCODING = "utf-8"
 ### Linux / macOS
 
 ```bash
-git clone https://github.com/madukamalruk/unipathlk-v2.git
-cd unipathlk-v2
+git clone https://github.com/madukamalruk/unipathlk-v1.git
+cd unipathlk-v1
 python3.12 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
 PYTHONIOENCODING=utf-8 .venv/bin/jac start main.jac --port 8000
@@ -171,4 +171,4 @@ No event submission or public app URL is claimed. Accounts, payments, saved plan
 
 ## Project
 
-Built for AI Hackathon 2026 Sri Lanka. Repository: [madukamalruk/unipathlk-v2](https://github.com/madukamalruk/unipathlk-v2). The README organisation follows the owner's [AI-Hackathon-Trial](https://github.com/madukamalruk/AI-Hackathon-Trial) reference; product claims and measurements refer to this repository only.
+Built for AI Hackathon 2026 Sri Lanka. Repository: [madukamalruk/unipathlk-v1](https://github.com/madukamalruk/unipathlk-v1). The README organisation follows the owner's [AI-Hackathon-Trial](https://github.com/madukamalruk/AI-Hackathon-Trial) reference; product claims and measurements refer to this repository only.

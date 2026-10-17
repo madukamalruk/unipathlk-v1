@@ -21,7 +21,7 @@ Plan an increment, implement a small change, run the appropriate checker and beh
 
 The owner explicitly requested use of coding agents, skills and a council/loop workflow. Root engineer owns services, runtime, integration, documentation and publication. UI engineer owns components/styles; catalogue reviewer owns real catalogue and its evidence notes; test engineer owns tests and test matrix. Give bounded file ownership, exchange contracts and integrate under one root. Product walkers are separate from these development roles.
 
-Do not print keys, dump environment variables, access unrelated credentials, commit .env/caches, add hidden client engines, overwrite teammates' files or publish failing work as complete. Local verification precedes JacHammer deployment. GitHub target: madukamalruk/unipathlk-v2. Any blocked external step must be reported accurately; accounts, purchases, key rotation and messages are not implicitly authorised beyond the user's request.
+Do not print keys, dump environment variables, access unrelated credentials, commit .env/caches, add hidden client engines, overwrite teammates' files or publish failing work as complete. Local verification precedes JacHammer deployment. GitHub target: madukamalruk/unipathlk-v1. Any blocked external step must be reported accurately; accounts, purchases, key rotation and messages are not implicitly authorised beyond the user's request.
 
 ## Student-reality review
 

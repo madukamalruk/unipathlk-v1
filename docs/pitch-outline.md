@@ -1,6 +1,6 @@
 # UniPath LK — six-slide pitch outline
 
-Prepared artifacts: [PDF](https://github.com/madukamalruk/unipathlk-v2/blob/main/docs/pitch-deck.pdf), [editable PowerPoint](https://github.com/madukamalruk/unipathlk-v2/blob/main/docs/pitch-deck.pptx) and [PDF-derived preview](https://github.com/madukamalruk/unipathlk-v2/blob/main/docs/pitch-deck-preview.png). The slides were visually checked. Core browser QA is complete for the tested local journeys; hosting is deferred by the user until local review; rehearse the exact submitted app revision before recording.
+Prepared artifacts: [PDF](https://github.com/madukamalruk/unipathlk-v1/blob/main/docs/pitch-deck.pdf), [editable PowerPoint](https://github.com/madukamalruk/unipathlk-v1/blob/main/docs/pitch-deck.pptx) and [PDF-derived preview](https://github.com/madukamalruk/unipathlk-v1/blob/main/docs/pitch-deck-preview.png). The slides were visually checked. Core browser QA is complete for the tested local journeys; hosting is deferred by the user until local review; rehearse the exact submitted app revision before recording.
 
 1. **Problem.** A post-A/L student must connect eligibility, complete costs and trusted progression. Avoid unsupported population statistics.
 2. **Student journey.** Start with a real business/accounting profile. Field selection bounds discovery; terminal-programme editorial subject terms provide a visible goal alignment marker. Matching terms influence order after hard status; unmatched goals stay not_established. Confirmed study-mode matches outrank unknown modes under study fit. Neither signal promises a career or admission.
@@ -18,7 +18,7 @@ The bounded provider uses the native Jac public SDK-parameter extension: eight-s
 
 ## Publication and source measurement snapshot — 17 October 2026
 
-The [public repository](https://github.com/madukamalruk/unipathlk-v2) was published with initial commit [`d2f41e8`](https://github.com/madukamalruk/unipathlk-v2/commit/d2f41e823edb7f940b32d0d3de24ab5d6290fb46). This is the initial publication snapshot; a subsequent planner control-flow fix passed clean checking and 35 native tests, and all seven authoritative HTTP checks on the latest typing-fix revision. Hosting is deferred by the user until local review; final event submission remains pending.
+The [public repository](https://github.com/madukamalruk/unipathlk-v1) was published with initial commit [`d2f41e8`](https://github.com/madukamalruk/unipathlk-v1/commit/d2f41e823edb7f940b32d0d3de24ab5d6290fb46). This is the initial publication snapshot; a subsequent planner control-flow fix passed clean checking and 35 native tests, and all seven authoritative HTTP checks on the latest typing-fix revision. Hosting is deferred by the user until local review; final event submission remains pending.
 
 The recorded source snapshot reports Jac **86.191% of nonwhitespace UTF-8 bytes** and **72.892% of nonblank lines** under `scripts/audit_source.jac`. The observed GitHub Languages display reports **Jac 88.3%, CSS 11.0%, Other 0.7%**. These use different denominators. The organiser’s counting method is unconfirmed, so these measurements do not establish unconditional compliance with the ≥80% requirement. Rerun the source audit after code changes.
 

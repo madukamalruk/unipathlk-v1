@@ -29,7 +29,7 @@ The real catalogue is a 31-programme, 12-field discovery sample. Real complete c
 
 Generation helper: local-setup/build_demo_walkthrough.py, outside the product. Run with the bundled Python. The default is --activity-mode fallback. Only select --activity-mode live after replacing capture 03 with a view that actually reports AI-assisted planning. Re-run and visually inspect after any replacement.
 
-The [MP4](https://github.com/madukamalruk/unipathlk-v2/blob/main/docs/demo-walkthrough.mp4) and these [notes](https://github.com/madukamalruk/unipathlk-v2/blob/main/docs/demo-video-notes.md) are published in the [public repository](https://github.com/madukamalruk/unipathlk-v2). This is GitHub artifact publication; event-specific video hosting and final submission remain separate actions. Application hosting is deferred by the user until local review.
+The [MP4](https://github.com/madukamalruk/unipathlk-v1/blob/main/docs/demo-walkthrough.mp4) and these [notes](https://github.com/madukamalruk/unipathlk-v1/blob/main/docs/demo-video-notes.md) are published in the [public repository](https://github.com/madukamalruk/unipathlk-v1). This is GitHub artifact publication; event-specific video hosting and final submission remain separate actions. Application hosting is deferred by the user until local review.
 
 ## Current increment notice
 
