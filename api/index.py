@@ -24,9 +24,9 @@ from jaclang.cli.commands.cli_helpers import proc_file
 _base, _mod, _mach = proc_file(str(WORKSPACE_DIR / "main.jac"))
 Jac.jac_import(target=_mod, base_path=_base, lng="jac")
 
-# Instantiate Jac API Server and obtain the underlying UniPathRequestHandler
+# Instantiate Jac API Server and obtain the underlying UniPathRequestHandler (port=0 for serverless)
 ServerClass = Jac.get_api_server_class()
-_jac_server = ServerClass(module_name=_mod, port=8000, base_path=_base)
+_jac_server = ServerClass(module_name=_mod, port=0, base_path=_base)
 _jac_server.introspector.load()
 _jac_server._ensure_sv_siblings()
 _BaseJacHandler = _jac_server.create_handler()
