@@ -22,11 +22,13 @@ Owner request: make the existing repository work when imported/pulled and connec
 | Actual HTTP | All 13 groups pass. Includes all eight operations, exact bytes/MIME for five PNGs, root title/mount/viewport, real JavaScript/CSS fetches and configured public origin with `Host: internal-runtime:8000`. |
 | Launch/configuration syntax | Git Bash `bash -n` passes both shell scripts; TOML and workflow YAML parse. Linux launcher execution is specified in updated CI, not claimed as locally exercised on Windows. |
 | Clean Linux CI | Source `cef44ec` passed [run 39025035597](https://github.com/madukamalruk/unipathlk-v1/actions/runs/39025035597): pinned install, all module checks, native tests, actual Linux start.sh execution, native client build and all 13 HTTP groups. |
-| Source composition | Audit excludes actual `.uv-cache` dependency/build cache; includes new shell support code. All source: 72.293% Jac nonblank lines / 87.583% nonwhitespace bytes. Application/support excluding tests/audit: 63.634% / 81.026%. No competition verdict inferred. |
+| Source composition after integration | Includes the owner's concurrent Vercel adapter/launchers and new shell support; excludes generated bundles and dependency/build caches. All source: 71.431% Jac nonblank lines / 86.424% nonwhitespace bytes. Application/support excluding tests/audit: 62.642% / 79.398%. No competition verdict inferred. |
 
 Initial sandbox network/DNS restrictions prevented dependency fetch and local HTTP access; repeating those operations with network access succeeded. These were tooling restrictions, not relaxed test assertions. Module test discovery intentionally reports zero cases in the explicit HTTP runner; its 13 named groups were separately executed against the running server.
 
 ## Hosted boundary and next use
+
+Remote main changed during verification to owner commit `37f6d7f` (Vercel deployment adapter and prebuilt assets). The attempted non-fast-forward push was rejected; those additions were fetched and merged without modification. No history was overwritten. The native Jac application source remains identical to tested `cef44ec`; all 13 HTTP groups passed again after integration. Vercel deployment itself was not tested in this task.
 
 No authenticated JacHammer project, project ID or deployed URL was supplied/used. This increment verifies a clean local install/build and simulated proxy behaviour, not the actual hosted runtime or browser interactions. Follow [the import/connection guide](../JACHAMMER_INIT_PROMPT.md), confirm Settings > Jac version = 0.16.7, set runtime config as project-level variables, then repeat the HTTP and browser checks at the real URL. Pulling source and deploying a release are separate platform actions.
 

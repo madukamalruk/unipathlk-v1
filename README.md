@@ -155,10 +155,10 @@ Latest compatibility verification: **18 Jac modules passed; 56 native tests pass
 
 | Handwritten-source scope | Nonblank line share | Nonwhitespace UTF-8 byte share |
 | --- | --- | --- |
-| All authored source, including tests/audit | 3,953 / 5,468 = **72.293% Jac** | 166,348 / 189,931 = **87.583% Jac** |
-| Application/support source, excluding tests and audit script | 2,651 / 4,166 = **63.634% Jac** | 100,710 / 124,293 = **81.026% Jac** |
+| All authored source, including tests/audit | 3,953 / 5,534 = **71.431% Jac** | 166,348 / 192,480 = **86.424% Jac** |
+| Application/support source, excluding tests and audit script | 2,651 / 4,232 = **62.642% Jac** | 100,710 / 126,842 = **79.398% Jac** |
 
-Generated code, dependencies, caches, JSON/lock files, documents and image bytes are excluded. CSS is included. There is no handwritten `.py` or `.js` application file; Python standard-library interop occurs inside Jac. Comments are included in these source measurements. The official PDF says at least 80% Jac but does not define a counting denominator. **Line-based counting currently fails; byte-based counting passes. Organiser clarification is required before claiming eligibility.** No minification, filler or Linguist overrides are used to manufacture compliance.
+Generated code, dependencies, caches, JSON/lock files, documents and image bytes are excluded. CSS and the concurrently added Python Vercel adapter (`api/index.py`) and its launchers are included. The JacHammer application uses native Jac; the separate Vercel additions are preserved from the owner's concurrent main-branch commit. Comments are included in these measurements. The official PDF says at least 80% Jac but does not define a counting denominator. **Line-based counting fails in both scopes; byte-based counting passes with tests/audit included and fails in application/support scope. Organiser clarification is required before claiming eligibility.** No minification, filler or Linguist overrides are used to manufacture compliance.
 
 The official event PDF gives **17 October 2026, hacking from 09:00 and submission by 17:30 Asia/Colombo**; our owner targets **17:00** as a buffer. JacHammer hosting is encouraged, not mandatory in that PDF. Current commits have event-day timestamps, but commit dates alone do not prove the origin/timing of every received source file. Team check-in and final submission remain owner/event responsibilities.
 
