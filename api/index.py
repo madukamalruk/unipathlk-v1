@@ -32,8 +32,8 @@ _jac = {"server": None, "cls": None}
 def _load_jac():
     if _jac["cls"] is None:
         os.chdir(str(WORKSPACE_DIR))
-        from jaclang.jac0core.runtime import JacRuntime as Jac
-        from jaclang.cli.commands.cli_helpers import proc_file
+        from jaclang.jac0core.runtime import JacRuntime as Jac  # type: ignore  # noqa
+        from jaclang.cli.commands.cli_helpers import proc_file  # type: ignore  # noqa
 
         base, mod, _mach = proc_file(str(WORKSPACE_DIR / "main.jac"))
         Jac.jac_import(target=mod, base_path=base, lng="jac")
