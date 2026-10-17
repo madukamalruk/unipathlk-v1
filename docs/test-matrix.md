@@ -8,6 +8,8 @@ Fresh Python 3.12.12 install with all 57 constrained packages; 18 authored Jac m
 
 ## Earlier release evidence
 
+Current implementation `cef44ec` also passed [clean Linux CI](https://github.com/madukamalruk/unipathlk-v1/actions/runs/39025035597), including the Linux launcher, native build and all 13 HTTP groups. This is current CI evidence, separate from the earlier runs below.
+
 | Scope | Observed result |
 | --- | --- |
 | Authored-module checker | 18/18 passed, 40.31s; final chat-icon App check also passed, 6.02s. |

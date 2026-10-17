@@ -21,6 +21,8 @@ Status: **IMPLEMENTED / LOCAL VERIFIED**. Owner resumes compatibility work using
 
 Evidence: fresh Python 3.12.12 environment installed all 57 constrained packages; all 18 authored Jac modules pass; 56 native tests pass (0.845s); native client build succeeds; all 13 HTTP groups pass on port 8765, including internal Host/public Origin and exact image/bundle delivery. Shell scripts pass Bash syntax checks; actual Linux launcher execution is left to updated CI. Tracked text credential-pattern scan: zero matches; no real dotenv tracked. [Detailed evidence](docs/jachammer-compatibility.md), [import guide](JACHAMMER_INIT_PROMPT.md). Actual authenticated JacHammer run/public URL remains unobserved; no deployment claim.
 
+Publication evidence: implementation `cef44ec` pushed to `rusira`; [Linux CI 39025035597](https://github.com/madukamalruk/unipathlk-v1/actions/runs/39025035597) passed pinned install/check/native/start.sh/client/13 HTTP steps. The same tested implementation is included in `main` for default JacHammer imports. Subsequent evidence checkpoint changes documentation only.
+
 ## Previous defect loop
 
 Reproduce, isolate, fix, run the affected case and related regressions, record the result. Fixed stale Jac IR by preserving cache backups and using current write times; bounded SDK calls; corrected guide typing and a hospitality question incorrectly classified as generic study advice; validated partial grades and nested subject keys; denied unused framework accounts and unsafe static paths. Prior Linux CI narrowing error was repaired at a5ff6d5.
