@@ -8,7 +8,7 @@ Python3.12, Jac0.16.7, byLLM0.6.19. Native client components compile with Jac's 
 
 `Catalogue` and `Offering` nodes connect through `ProgressesTo` edges carrying explicit prerequisites and claim evidence. Shared catalogue nodes are read-only through the API. Student profiles, lens findings, branch qualification sets and planning state are request-local.
 
-`BranchSearchWalker` uses copied branch state and checks both node and transition conditions. Maximum4stages,100expanded states and20candidate paths; cycle guards terminate repeated nodes and truncation is reported. Aspiration/Fiscal/Gatekeeper/Bridge findings describe actual work.
+`BranchSearchWalker` uses copied branch state and checks both node and transition conditions. Maximum4stages,100expanded states and20candidate paths; cycle guards terminate repeated nodes and truncation is reported. Three parameterised LensWalker executions produce Aspiration/Fiscal/Gatekeeper findings. Bridge findings are derived from multi-stage candidates; no fourth Bridge walker exists. Branch search uses an explicit frontier over typed graph edges; the lens walker performs node-entry visit/here traversal.
 
 Requirements are pass/fail/unknown with nested all/any. Ranking retains hard status, editorial subject alignment and selected cost/duration/study preference before model tie-breaking. Goal tags establish neither professional eligibility nor employment.
 
@@ -49,7 +49,7 @@ GET serves the app and native static assets. Dot-segment, encoded-separator, bac
 
 ## Client and verification
 
-Desktop profile sidebar; mobile collapsible profile; compact results/comparison; retake view; native dialog guide; Colombo clock. Request/revision refs prevent stale plan, retake and chat responses replacing current state. Model text is not injected as HTML. One selected owner image is served from assets/ via the runtime's static fallback.
+Desktop profile sidebar; mobile collapsible profile; compact results/comparison; retake view; native dialog guide; Colombo clock. Request/revision refs prevent stale plan, retake and chat responses replacing current state. Model text is not injected as HTML. Five owner images serve the header, theme-aware welcome state, retake and guide through the fixed-name binary compatibility route described below.
 
 Jac's timestamp IR fast path can accept stale caches after copies preserving old mtimes. Changed-source sync now writes current mtimes; stale generated caches/builds were preserved under backup names before recompilation. Source and dependency files are never replaced to hide a failing check.
 
@@ -59,3 +59,10 @@ See the test matrix for current counts. Owner confirmed new panels open. Indepen
 ## Public image compatibility
 
 Jac 0.16.7 declares but does not implement the default binary send_static_file hook. The project HTTP adapter intercepts exactly five approved /static/*.png names and reads only their fixed assets/ paths, responding with image/png, byte length and revalidation caching. Path rejection precedes the allowlist; filesystem exceptions become generic 404. JavaScript/CSS keep their existing runtime routes. Installed runtime and generated outputs are unchanged.
+
+
+## Audit: bounded agency and schema scope
+
+The planner forces search first and evaluation second. Only then can it ask an allowed missing-field question or finish; valid model ordering only breaks deterministic priority ties. Evaluation sorts already checked search candidates and collects unknowns. There is no iterative alternative research, model-created transfer, independent LLM lens debate or persisted student-agent memory. The four named action values are not four unconstrained autonomous agents.
+
+Institutions, qualifications, career tags and evidence remain fields in Offering/catalogue records. The implementation has Catalogue/Offering nodes and ProgressesTo edges, not the old proposed five-entity ontology. get_app_info returns catalogue/domain/qualification metadata; it does not currently publish actions/lenses lists. The public catalogue operation returns curated offering/transition records; graph projection with lens findings belongs to planning results. See docs/judge-audit-2026-10-17.md for observed schema differences.

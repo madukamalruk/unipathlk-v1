@@ -26,3 +26,8 @@ Do not print keys, dump environment variables, access unrelated credentials, com
 ## Student-reality review
 
 Catalogue reviewer independently checked official retake policy and six practical offerings. UI engineer authored the dashboard/clock/retake/guide components. Test engineer identified partial-grade, nested-input, framework-account, body-bound and static-path risks and supplied independent cases. Root integrated/fixed code, consolidated duplicate cases and ran final verification. These are development roles; no Claude-specific external council tool or hidden reasoning output is claimed.
+
+
+## Verified runtime boundary
+
+LensWalker is one parameterised walker instantiated three times: Aspiration, Fiscal, Gatekeeper. Bridge is a derived projection finding, not a separate walker or LLM agent. Planner search/evaluate are mandatory initial actions; later choice is constrained clarification/finish/tie-breaking. Request-local variables are short-lived planning state, not persistent agent memory. Development reviewers are not a runtime council. Keep these distinctions in the demo and README.

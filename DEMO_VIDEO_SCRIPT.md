@@ -1,12 +1,19 @@
-# Current three-minute live-demo script
+# UniPath LK — current 150-second demo script
 
-Existing published silent video and pitch binaries show the previous release. Rehearse/record this script against the current local app before representing it as current evidence.
+Use one synthetic Sri Lankan post-A/L student interested in English/language education. Do not enter a real student's identifiers. Existing video/deck binaries show the previous release; record this script against the current application.
 
-1. 0:00–0:20 — Explain the post-A/L decision problem across all fields. Select hospitality or another non-IT goal.
-2. 0:20–1:00 — Enter a synthetic student profile, request routes, answer a clarification if asked. Show how conditions or selected routes change; no admission guarantee.
-3. 1:00–1:25 — Compare real programme stages, official sources and missing cost/intake facts. Unknown is not zero.
-4. 1:25–2:00 — Open Consider retaking A/Ls. Demonstrate six months, 7,000 monthly preparation, 4,000 upfront, 2,000 savings and 5,000 monthly contribution: 46,000 spending and 14,000 extra initial savings. Enter 1,000 monthly income forgone to show separate 6,000 opportunity cost. Explain year-scoped policy, not a universal exam ban.
-5. 2:00–2:30 — Open Ask study guide. Explain optional Gemini consent, public catalogue choices, server-owned facts and honest fallback. Never show the key or private student identifiers.
-6. 2:30–3:00 — If useful, show the explicitly labelled synthetic fixture: direct 84,000 / shortfall 22,000 versus multistep 54,000 / shortfall 0. Close with Jac graph/walkers/byLLM and the small-catalogue, incomplete-cost and local-hosting limitations.
+| Time | On screen and narration |
+| --- | --- |
+| 0:00–0:15 | Real catalogue, Languages & Media. Explain the post-A/L decision: results, money, interests and whether another A/L sitting makes sense. |
+| 0:15–0:40 | Goal English education; synthetic profile; plan. Show real English diploma/degree options, evidence and needs_confirmation. Complete fees remain unknown. |
+| 0:40–1:00 | Show graph/source views and the sourced English diploma-to-BA application edge. It does not assert automatic admission, shortened duration or credit exemptions. |
+| 1:00–1:25 | Explicitly switch to fictional demo fixtures. Savings 2,000/contribution 5,000; relocation unknown, then yes. Show needs_confirmation → conditional; direct 84,000/22,000 initial gap versus multistep 54,000/0. These are fictional maths examples, not English programme fees. |
+| 1:25–1:45 | Retake scenario: six months, preparation 7,000/month +4,000 upfront, savings 2,000 and monthly contribution 5,000. Show 46,000 spending/14,000 extra initial savings; 1,000/month income forgone is a separate 6,000 opportunity cost. |
+| 1:45–2:10 | Show actual node/edge, visit/here and byLLM source. Explain bounded search/evaluate/ask/finish dispatch and actual displayed mode. Backtracking is deterministic graph work, not private LLM reasoning. |
+| 2:10–2:30 | Close with practical all-field impact, official sources and limitations. State a hosted URL only after hosted verification. No admission, job or financial guarantee. |
 
-Use actual observed planner mode. Do not claim an offline fallback is live AI or that pending hosting is live. Deadline: owner target 17:00 Asia/Colombo, 2026-10-17.
+Rehearse the exact selected real profile before recording. If Gemini fails, show honest fallback and a clearly labelled prior live_ai recording; never pass a cached answer off as a live call. If real fees are unknown, keep them unknown and use the labelled fixture for numerical proof. Keep the verified local server/video available if JacHammer or venue networking fails.
+
+The planner is bounded orchestration with mandatory initial search/evaluation; there is no runtime council of debating LLM agents or persistent student memory. Show what it actually does.
+
+Official PDF deadline: 17:30 on 2026-10-17, Asia/Colombo. Owner's buffer target: 17:00. Feature freeze target: 15:30.

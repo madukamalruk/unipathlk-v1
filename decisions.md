@@ -21,3 +21,7 @@
 ## D-image — repair actual delivery before adding artwork
 
 Owner-reported broken images reproduced as HTTP 500. Use project-local fixed-name PNG serving because the pinned runtime binary hook is unimplemented. Reject arbitrary paths, preserve original image bytes, and test actual delivered content/MIME rather than assuming that build success or file existence proves image availability. Use light/dark landscape assets in the welcome state, the supplied wordmark in the header, pathway-steps in retake and the study icon sheet in the guide. Decorative art has empty alt; brand has a readable name.
+
+## D-audit — measured README and truthful runtime-agent scope
+
+Follow the owner's AI-Hackathon-Trial README organisation while replacing promotional claims with this repository's verified behaviour. Preserve application source during the requested audit. Document the actual two-node/one-edge ontology, three parameterised lens executions, derived Bridge finding and forced initial planner actions. Development collaboration is not a runtime LLM council. The official PDF's 80% denominator is unspecified: report failing line shares and passing byte shares, including a scope without tests, without claiming unconditional eligibility. JacHammer hosting is encouraged in the PDF; 17:30 is its submission deadline and 17:00 remains the owner's buffer target. Received-code provenance and final event registration/submission require external confirmation.
