@@ -2,6 +2,7 @@
 .env.*
 !.env.example
 .venv/
+.uv-cache/
 .jac/
 __jac_gen__/
 __pycache__/

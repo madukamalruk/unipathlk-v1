@@ -1,5 +1,7 @@
 # Current release audit â€” 2026-10-17
 
+Latest U12 JacHammer compatibility evidence is in [jachammer-compatibility.md](jachammer-compatibility.md): fresh pinned installation/native build, 18 authored module checks, 56 native tests and 13 actual HTTP groups pass. No actual JacHammer URL is verified. Counts and snapshot below describe the earlier release.
+
 Pinned runtime: Python 3.12, Jac 0.16.7, byLLM 0.6.19. Authoritative local native client rebuilt successfully and health reports 37 real programmes. Source snapshot SHA-256: `890f335898838295af312667bfb955ec54aafa94258a3d62d49b6aba45ab0402`.
 
 ## Handwritten composition

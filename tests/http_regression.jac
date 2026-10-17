@@ -1,12 +1,14 @@
 """Run against an existing local server: jac run tests/http_regression.jac.
 Offline AI in every request; no .env access, student files or server management.
-Set UNIPATH_TEST_BASE_URL only when testing a different local server URL.
+Set UNIPATH_TEST_BASE_URL for another local or hosted server URL.
 """
 import copy;
 import json;
 import os;
+import re;
 import sys;
 import from urllib.request { Request, urlopen }
+import from urllib.parse { urlsplit }
 import from urllib.error { HTTPError }
 import from http.client { HTTPResponse }
 import from pathlib { Path }
@@ -249,6 +251,83 @@ def _h11() {
     assert missing;
 }
 
+def _h12() {
+    # Browser Origin checks must also work over actual HTTP. Forwarded headers
+    # alone are caller-controlled and must not turn a hostile site into a peer.
+    parsed = urlsplit(_base_url);
+    local_origin = str(parsed.scheme) + "://" + str(parsed.netloc);
+    request = Request(_base_url + "/walker/health", data=b"{}",
+        headers={"Content-Type": "application/json", "Origin": local_origin}, method="POST");
+    with (urlopen(request, timeout=30) as HTTPResponse) as response {
+        body = json.load(response) as dict;
+        assert response.status == 200;
+        reports = (body.get("data", {}) as dict).get("reports", body.get("reports")) as list[dict];
+        assert reports and reports[0]["ok"];
+        assert response.getheader("Access-Control-Allow-Origin") == local_origin;
+    }
+    for forwarded in [False, True] {
+        headers = {"Content-Type": "application/json", "Origin": "https://attacker.invalid"};
+        if forwarded {
+            headers["X-Forwarded-Host"] = "attacker.invalid";
+            headers["X-Forwarded-Proto"] = "https";
+            headers["Forwarded"] = "host=attacker.invalid;proto=https";
+        }
+        request = Request(_base_url + "/walker/health", data=b"{}", headers=headers, method="POST");
+        rejected = False;
+        try {
+            with (urlopen(request, timeout=30) as HTTPResponse) as response { assert False, "Cross-origin request accepted"; }
+        } except HTTPError as error {
+            assert error.code == 403;
+            assert error.headers.get("Access-Control-Allow-Origin") is None;
+            assert "Traceback" not in (error.read() as bytes).decode("utf-8");
+            rejected = True;
+        }
+        assert rejected;
+    }
+    public_origin = os.environ.get("UNIPATH_TEST_PUBLIC_ORIGIN", "");
+    if public_origin {
+        request = Request(_base_url + "/walker/health", data=b"{}",
+            headers={"Content-Type": "application/json", "Origin": public_origin, "Host": "internal-runtime:8000"}, method="POST");
+        with (urlopen(request, timeout=30) as HTTPResponse) as response {
+            body = json.load(response) as dict;
+            reports = (body.get("data", {}) as dict).get("reports", body.get("reports")) as list[dict];
+            assert response.status == 200 and reports and reports[0]["ok"];
+            assert response.getheader("Access-Control-Allow-Origin") == public_origin;
+        }
+    }
+}
+
+def _h13() {
+    # --no_client API runs cannot prove the root dashboard or built assets.
+    # Enable only for a server whose native client has actually been built.
+    with (urlopen(_base_url + "/", timeout=30) as HTTPResponse) as response {
+        assert response.status == 200;
+        assert str(response.getheader("Content-Type")).startswith("text/html");
+        html = (response.read() as bytes).decode("utf-8");
+    }
+    assert '<div id="root">' in html and '<div id="__jac_root">' not in html;
+    assert "UniPath LK | Education pathways" in html;
+    assert 'name="viewport"' in html;
+    scripts = re.findall('<script[^>]+src=[\"\x27]([^\"\x27]+)[\"\x27]', html) as list[str];
+    styles = re.findall('<link[^>]+href=[\"\x27]([^\"\x27]+)[\"\x27]', html) as list[str];
+    styles = [path for path in styles if urlsplit(path).path.endswith(".css")];
+    assert scripts and styles, "Root app must reference its native script and extracted CSS";
+    for path in scripts + styles {
+        assert path.startswith("/static/"), "Native app assets must use the approved local static route";
+        url = _base_url + path;
+        assert urlsplit(url).netloc == urlsplit(_base_url).netloc, "Unexpected external app asset";
+        with (urlopen(url, timeout=30) as HTTPResponse) as response {
+            body = response.read() as bytes;
+            mime = str(response.getheader("Content-Type")).lower();
+            assert response.status == 200 and body;
+            text_body = body.decode("utf-8", errors="replace") as str;
+            assert not text_body.lstrip().lower().startswith("<!doctype html"), "Asset URL returned an HTML fallback";
+            if path in styles { assert mime.startswith("text/css"); }
+            else { assert "javascript" in mime; }
+        }
+    }
+}
+
 with entry:__main__ {
     group = "H01";
     try {
@@ -263,7 +342,13 @@ with entry:__main__ {
         group = "H09"; _h09(); print("H09 guide facts, bounded history and grade consistency PASS");
         group = "H10"; _h10(); print("H10 account denial, traversal, body bounds and headers PASS");
         group = "H11"; _h11(); print("H11 all five public PNGs, byte equality, MIME and missing image PASS");
-        print("11 HTTP regression groups passed. All valid planning requests disable AI.");
+        group = "H12"; _h12(); print("H12 browser origin and forwarded-header spoof rejection PASS");
+        if os.environ.get("UNIPATH_TEST_CLIENT", "") == "1" {
+            group = "H13"; _h13(); print("H13 root native app, script and stylesheet HTTP delivery PASS");
+            print("13 HTTP regression groups passed. All valid planning requests disable AI.");
+        } else {
+            print("12 HTTP regression groups passed. H13 client check disabled. All valid planning requests disable AI.");
+        }
     } except Exception as error {
         print(group + " FAIL (" + str(`type(error).__name__) + ")");
         sys.exit(1);

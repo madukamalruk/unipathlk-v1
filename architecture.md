@@ -2,7 +2,9 @@
 
 ## One pinned Jac application
 
-Python3.12, Jac0.16.7, byLLM0.6.19. Native client components compile with Jac's frontend toolchain; no handwritten JavaScript recommendation service, FastAPI layer or unrelated framework. The Downloads checkout is authoritative; staging and development helpers stay outside publication.
+Python3.12, Jac0.16.7, byLLM0.6.19. Native client components compile with Jac's frontend toolchain; no handwritten JavaScript recommendation service, FastAPI layer or unrelated framework. The current owner-supplied checkout is `C:\Users\USER\Documents\Antigravity\unipathlk-v1`; older Downloads paths below are historical evidence.
+
+JacHammer imports the root `jac.toml` with fullstack kind, main.jac entry and app root route. `.python-version` records the Python requirement. Linux setup/start scripts reproduce the pinned dependencies, check runtime versions and serve the native client in the foreground on `PORT` or 8000. Hosting project variables override dotenv defaults. Explicit `UNIPATH_PUBLIC_ORIGINS` handles a proxy rewriting Host; only exact configured origins pass and forwarded headers grant no access. Native tests and HTTP checks cover this boundary and HTML/JS/CSS delivery. Hosted execution still requires observation on the actual JacHammer account.
 
 ## Graph and deterministic authority
 

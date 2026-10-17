@@ -1,16 +1,16 @@
 # UniPath LK working memory
 
-Updated17October2026, Asia/Colombo. Owner's current deadline is **17:00**. Feature additions are frozen; finish verification, local review and rehearsal. JacHammer hosting remains deferred until owner review.
+Updated17October2026, Asia/Colombo. Owner's current deadline is **17:00**. Latest instruction resumes JacHammer compatibility work for repository import/pull; earlier deferral notes below describe previous releases. Actual hosted execution still requires observation.
 
-- Authoritative folder: `C:\Users\maduk\Downloads\UniPath_LK_Complete_Project`; target repository `madukamalruk/unipathlk-v1`.
+- Current working folder: `C:\Users\USER\Documents\Antigravity\unipathlk-v1`, branch `rusira`; target repository `madukamalruk/unipathlk-v1`. The older Downloads location is historical.
 - Verified baseline source a5ff6d5; documentation checkpoint fdc7830. Original project backup and pre-increment Git archive are outside the checkout.
 - Audience covers all post-A/L fields, not IT only. English UI/code/docs; natural Sinhala collaboration.
 - Pins: Python3.12/Jac0.16.7/byLLM0.6.19 and exact tested dependency constraints. Use the project executable, not global Jac.
 - Current researched catalogue:37real offerings,12domains,7providers. Six practical DTET/SLITHM alternatives added; no invented transfer edges, complete fees or intakes.
 - New repeat-A/L aid: separate user-estimated preparation scenario, current-route comparison, year-scoped official guidance, no future-grade/admission prediction. Example46,000spend/14,000extra initial savings/6,000separate income opportunity cost.
 - New compact dashboard, real comparison table, Colombo clock and show/hide study guide. Gemini only selects typed topics/IDs/tips; displayed facts and links are server-owned. One real guide call live_ai in2.05seconds with3programmes/3sources.
-- Final consolidated native suite54cases; the earlier71-case combined pass contained overlapping root/council cases.18 authored modules checked at the previous release; five affected modules rechecked and 11 HTTP groups pass. See matrix for precise scope.
-- Jac 87.371% of nonwhitespace UTF-8 bytes; 71.707% of nonblank lines, including CSS and support scripts.
+- Current U12 suite: 56 native cases, 18 authored Jac checks and 13 HTTP groups pass against a fresh native build. Earlier 54/11 and 71 overlapping-case records are historical. See docs/jachammer-compatibility.md.
+- Current source: Jac 87.583% of nonwhitespace UTF-8 bytes; 72.293% of nonblank lines, including CSS and new shell support scripts. Line-based competition eligibility still unconfirmed.
 - Provider semaphore/rate budget shared across planner+guide; process-local only. No raw provider exceptions, keys, arbitrary tools or client-computed verdicts accepted.
 - HTTP allowlist,32KiBpre-parse bound, same-origin checks, static traversal rejection and unused account denial added. Exact-key scan must be refreshed after any browser rebuild.
 - Owner manually confirmed retake tab and guide panel both open. CUA repeatedly returned Work-settings browser-disabled; this is an external capability block despite owner consent. New mobile/keyboard/clock/comparison journeys remain unverified by the agent.
@@ -31,3 +31,5 @@ U11 judge audit: application source unchanged. Rechecked all 18 Jac modules, ent
 Official PDF: 09:00 hacking start/17:30 submission; 17:00 remains owner buffer target. JacHammer is encouraged, not mandatory in that PDF. 80% denominator unspecified: all authored source 71.707% nonblank lines/87.371% bytes; excluding tests+audit script 63.718% lines/81.325% bytes. Line-based gate fails; organiser clarification and received-code provenance remain eligibility risks. Do not backdate or manufacture source percentage.
 
 Runtime agency is limited: mandatory initial search/evaluate, later clarification/finish/tie choices; three generic lens executions and derived Bridge projection, no independent LLM council or persistent student memory. Estimated rubric 39/60, not an official score; product mid-table, eligibility at risk until clarified. README follows AI-Hackathon-Trial structure but measured claims replace its promotional assertions. Detailed Sinhala audit and current 150-second demo script added. No new UI/browser/hosting certification claimed.
+
+U12 owner requests JacHammer compatibility on pull/import. Fresh project venv Python3.12.12/Jac0.16.7/byLLM0.6.19 installed successfully, 18 checks/56 native tests (0.845s)/13 actual HTTP groups passed; native client built with Bun1.3.11. Current local server port8765. Explicit UNIPATH_PUBLIC_ORIGINS handles internal proxy Host without trusting forwarded headers; host environment overrides dotenv. Linux scripts setup/start retain native bundling, pin checks and foreground startup; PORT defaults8000. Set project-level server variables on JacHammer; account-global variables do not reach production according to its docs. Confirm the committed version pin through Settings > Jac version. Earlier hosting deferral is superseded for preparation; actual account/project/URL was not used or verified. Updated CI exercises the Linux launcher and native asset HTTP checks. Tracked text pattern scan: zero matches/no real dotenv tracked.

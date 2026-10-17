@@ -11,7 +11,7 @@ def audit_source() -> dict[str, any] {
         ".ts": "TypeScript", ".jsx": "JSX", ".tsx": "TSX", ".sh": "Shell"
     };
     excluded_dirs = [
-        ".git", ".jac", ".venv", "venv", "node_modules", "reference_materials",
+        ".git", ".jac", ".venv", "venv", ".uv-cache", "node_modules", "reference_materials",
         "__pycache__", ".pytest_cache", ".mypy_cache", ".ruff_cache", ".cache",
         "generated", ".generated", "dist", "build", "out", "coverage", "data", "docs"
     ];
