@@ -42,14 +42,18 @@ class handler(_BaseJacHandler):
 
         # Vercel rewrites provide the original matched path in x-matched-path or x-invoke-path
         raw_matched = self.headers.get("x-matched-path") or self.headers.get("x-invoke-path")
-        if raw_matched:
-            split = urlsplit(self.path)
-            query = f"?{split.query}" if split.query else ""
-            self.path = raw_matched + query
-        elif self.path in ("/api", "/api/", "/api/index", "/api/index.py"):
-            self.path = "/"
-        elif self.path.startswith("/api/"):
-            self.path = self.path[4:]
+        resolved = raw_matched if (raw_matched and not raw_matched.startswith("/api/index")) else self.path
+
+        split = urlsplit(resolved)
+        path = split.path
+        query = f"?{split.query}" if split.query else ""
+
+        if path in ("", "/", "/api", "/api/", "/api/index", "/api/index.py"):
+            self.path = "/" + query
+        elif path.startswith("/api/"):
+            self.path = path[4:] + query
+        else:
+            self.path = path + query
 
         # Normalize Host from x-forwarded-host if present, ensuring strict Origin checks pass
         fwd_host = self.headers.get("x-forwarded-host")

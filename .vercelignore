@@ -8,6 +8,7 @@ __pycache__
 docs/pitch-deck.pdf
 docs/pitch-deck.pptx
 docs/demo-walkthrough.mp4
+dist
 .jac/cache*
 .jac/bin
 .jac/client/node_modules
